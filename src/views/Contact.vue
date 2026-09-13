@@ -58,17 +58,13 @@
 </template>
 
 <script setup lang="ts">
-import { shallowRef, reactive } from "vue";
-import type { FormInstance } from "element-plus";
-import { ElMessage } from "element-plus";
+import { shallowRef } from "vue";
 import {
   Phone,
   Message,
   ChatDotRound,
   VideoPlay,
 } from "@element-plus/icons-vue";
-
-const formRef = shallowRef<FormInstance>();
 
 const contactInfo = shallowRef([
   { label: "联系电话", value: "13714151040", icon: Phone },
