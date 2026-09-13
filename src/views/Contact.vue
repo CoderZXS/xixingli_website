@@ -59,12 +59,11 @@
 
 <script setup lang="ts">
 import { shallowRef, reactive } from "vue";
-import type { FormInstance, FormRules } from "element-plus";
+import type { FormInstance } from "element-plus";
 import { ElMessage } from "element-plus";
 import {
   Phone,
   Message,
-  Location,
   ChatDotRound,
   VideoPlay,
 } from "@element-plus/icons-vue";
@@ -81,37 +80,6 @@ const contactInfo = shallowRef([
   },
   { label: "抖音", value: "CoderZXS", icon: VideoPlay },
 ]);
-
-const serviceOptions = shallowRef([
-  "软件开发",
-  "系统集成",
-  "IT运维",
-  "云计算",
-  "数据分析",
-  "网络安全",
-]);
-
-const formData = reactive({
-  name: "",
-  company: "",
-  phone: "",
-  email: "",
-  serviceType: "",
-  description: "",
-});
-
-const formRules: FormRules = {
-  name: [{ required: true, message: "请输入您的姓名", trigger: "blur" }],
-  phone: [{ required: true, message: "请输入您的联系电话", trigger: "blur" }],
-  email: [
-    { required: false, message: "请输入您的电子邮箱", trigger: "blur" },
-    {
-      type: "email",
-      message: "请输入正确的邮箱格式",
-      trigger: ["blur", "change"],
-    },
-  ],
-};
 
 const activeNames = shallowRef("0");
 
@@ -142,19 +110,6 @@ const faqList = shallowRef([
       "完全可以。我们支持根据客户业务需求进行定制化开发，技术栈涵盖Java、Python、Go、Node.js等后端技术，Vue、React等前端框架，以及移动端开发、云原生、AI/大数据等前沿技术领域。我们的技术团队会根据项目特点推荐最合适的技术方案。",
   },
 ]);
-
-const handleSubmit = async () => {
-  if (!formRef.value) return;
-  try {
-    await formRef.value.validate();
-    ElMessage.success(
-      "提交成功！我们的专业顾问将在1个工作日内与您联系，请保持电话畅通。",
-    );
-    formRef.value.resetFields();
-  } catch {
-    ElMessage.warning("请完整填写必填项后再提交");
-  }
-};
 </script>
 
 <style scoped>
